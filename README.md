@@ -1,81 +1,98 @@
-# 🛍️ Marketplace
+# 🛍️ Marketplace — Full-Stack E-Commerce Platform  
 
-**Marketplace** is a full-stack e-commerce platform that connects **customers** and **merchants**.  
-It allows users to browse products, add them to cart or wishlist, and place orders across multiple sellers.
-
-The project consists of two main parts:
-
-- **frontend/** → User interface built with **React + Vite + Tailwind CSS**
-- **marketplace_final_project/** → **Backend built with Java Spring Boot**
+**Marketplace** is a modern full-stack e-commerce web application connecting **customers** and **merchants**.  
+It allows users to browse products, add them to cart or wishlist, and place secure orders across multiple sellers.  
 
 ---
 
-## 🚀 Tech Stack
+## ⚙️ Project Overview  
 
-### 🧱 Backend (`marketplace_final_project/`)
-- **Java 17**
-- **Spring Boot** (Gradle build system)
-- **PostgreSQL** (via Docker)
-- **Spring Security + JWT Authentication**
-- **Spring Data JPA**
-- **Liquibase** for database versioning
-- **Swagger / OpenAPI** documentation
-- **Docker & Docker Compose**
-- **Kubernetes (YAML deployment files)**
-- **JUnit / Mockito** for testing
+The system consists of two main parts:  
+
+- **`frontend/`** → User interface built with **React + Vite + Tailwind CSS**  
+- **`backend/`** → REST API built with **Java Spring Boot + PostgreSQL**  
+
+---
+
+## 🚀 Tech Stack  
+
+### 🧱 Backend (`backend/`)
+- **Java 17**  
+- **Spring Boot** (Gradle build system)  
+- **PostgreSQL** (via Docker)  
+- **Spring Security + JWT Authentication**  
+- **Spring Data JPA**  
+- **Liquibase** for database versioning  
+- **Swagger / OpenAPI** documentation  
+- **Docker & Docker Compose**  
+- **Kubernetes (YAML deployment files)**  
+- **JUnit / Mockito** for testing  
 
 ### 🎨 Frontend (`frontend/`)
-- **React + Vite**
-- **Tailwind CSS**
-- **Axios** for API requests
-- **ESLint + Prettier** for clean code formatting
+- **React + Vite**  
+- **Tailwind CSS**  
+- **Axios** for API communication  
+- **Context API + Hooks** for state management  
+- **ESLint + Prettier** for clean code formatting  
 
 ---
 
-## ⚙️ Run the Backend with Docker
+## 🧩 Project Structure  
+
+marketplace/
+├── backend/ # Java Spring Boot backend
+│ ├── src/main/java/az/marketplace/
+│ │ ├── controller/ # REST endpoints
+│ │ ├── service/ # Business logic
+│ │ ├── repository/ # Data access layer
+│ │ ├── entity/ # Database entities
+│ │ ├── config/ # JWT, Security, CORS, Swagger
+│ │ ├── scheduler/ # Background jobs
+│ │ └── exception/ # Global exception handling
+│ ├── src/main/resources/
+│ │ ├── application.yaml
+│ │ └── db/changelog/
+│ ├── Dockerfile
+│ ├── docker-compose.yml
+│ └── k8s/ # Kubernetes manifests
+│
+└── frontend/ # React + Vite frontend
+├── src/
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
+
+yaml
+Kodu kopyala
+
+---
+
+## 🐳 Run the Backend with Docker  
 
 ```bash
-cd ./marketplace_final_project
-docker-compose up --build
-This will start both PostgreSQL and the Spring Boot backend containers.
-After successful startup, open:
-
-👉 http://localhost:8080/swagger-ui/index.html
+cd backend
+docker compose up -d db
+./gradlew bootRun
+After startup, open:
+➡️ http://localhost:8080/swagger-ui/index.html
 
 💻 Run the Frontend
-
-cd ./frontend
+bash
+Kodu kopyala
+cd frontend
 npm install
 npm run dev
-Frontend will start on:
-👉 http://localhost:5173
-It will automatically connect to the backend API at http://localhost:8080.
+Frontend runs at:
+➡️ http://localhost:5173
 
-🧩 Project Structure
-Marketplace/
-├── frontend/                     # React + Vite frontend
-└── marketplace_final_project/    # Java Spring Boot backend
-    ├── src/
-    │   ├── main/java/az/marketplace/
-    │   │   ├── controller/       # REST API endpoints
-    │   │   ├── service/          # Business logic
-    │   │   ├── repository/       # JPA repositories
-    │   │   ├── entity/           # Database entities
-    │   │   ├── config/           # Security, Swagger, JWT
-    │   │   ├── scheduler/        # Scheduled background jobs
-    │   │   └── exception/        # Global exception handling
-    │   └── resources/
-    │       ├── application.yaml  # Application config
-    │       └── db/changelog/     # Liquibase changelogs
-    ├── Dockerfile
-    ├── docker-compose.yml
-    └── k8s/                      # Kubernetes manifests
+It automatically connects to the backend API at http://localhost:8080/api.
+
 ✨ Main Features
-👤 User registration & login (JWT-based)
+👤 User registration & JWT-based login
 
-🏪 Merchant & customer roles
+🏪 Merchant & customer role separation
 
-🛒 Cart and order system
+🛒 Cart, wishlist & order management
 
 📦 Product and category management
 

@@ -1,0 +1,17 @@
+# Backend
+/backend/build/
+/backend/.gradle/
+/backend/.idea/
+/backend/out/
+
+# Frontend
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.idea/
+/frontend/.vscode/
+
+# Ümumi
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

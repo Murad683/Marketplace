@@ -1,0 +1,31 @@
+services:
+  db:
+    container_name: marketplace-postgres
+    image: postgres:16
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"   # host 5433 -> container 5432 (vacibdir!)
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  marketplace-app:
+    build: .
+    container_name: marketplace-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: app_db
+      DB_USER: postgres
+      DB_PASS: postgres
+      SPRING_PROFILES_ACTIVE: dev
+      JWT_SECRET: change_me
+
+volumes:
+  pg_data:
